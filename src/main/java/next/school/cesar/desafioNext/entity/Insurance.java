@@ -10,8 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import next.school.cesar.enums.InsuranceAnalysis;
-import next.school.cesar.enums.InsuranceType;
+import next.school.cesar.desafioNext.enums.InsuranceAnalysis;
+import next.school.cesar.desafioNext.enums.InsuranceType;
 
 @Entity //Declara classe como uma entidade que possa ser tabelada no banco
 @Builder //Automatizar criação de código através do lombok
