@@ -1,6 +1,6 @@
 package next.school.cesar.desafioNext.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -33,6 +33,6 @@ public class Client {
     private House[] houses;
     @OneToMany(mappedBy = "Client", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Vehicle[] vehicles;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Date createdAt;
+    private Date updatedAt;
 }

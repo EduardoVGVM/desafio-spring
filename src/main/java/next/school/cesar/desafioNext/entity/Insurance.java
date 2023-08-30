@@ -1,6 +1,6 @@
 package next.school.cesar.desafioNext.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +27,6 @@ public class Insurance {
     private int risk;
     private InsuranceAnalysis analysis;
     private String observation;
-    private LocalDateTime createdAt;
-    private LocalDateTime validatedAt;
+    private Date createdAt;
+    private Date validatedAt;
 }
