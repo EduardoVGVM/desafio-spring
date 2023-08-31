@@ -58,6 +58,8 @@ public class ClientController {
             client.setMarital_status(client.getMarital_status());
             client.setDependents(client.getDependents());
             client.setIncome(client.getIncome());
+            client.setVehicles(client.getVehicles());
+            client.setHouses(client.getHouses());
             return new ResponseEntity<>(c,HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

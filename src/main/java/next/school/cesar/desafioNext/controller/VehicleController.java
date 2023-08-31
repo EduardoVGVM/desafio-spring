@@ -30,9 +30,9 @@ public class VehicleController {
         return new ResponseEntity<Vehicle>(v, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/{client_id}")
+    @PutMapping("/{id}/client")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Vehicle> update(@PathVariable Long id, @RequestBody Vehicle v, @PathVariable Long client_id) {
+    public ResponseEntity<Vehicle> update(@PathVariable Long id, @RequestBody Vehicle v) {
         Optional<Vehicle> optional = repository.findById(id);
         if(optional.isPresent()) {
             Vehicle vehicle = optional.get();
