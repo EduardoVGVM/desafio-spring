@@ -35,8 +35,11 @@ public class HouseController {
     @GetMapping("/{zipcode}")
     public ResponseEntity<List<House>> getbyzipCode(@PathVariable("zipcode") String zipcode){
         List<House> optional = repository.findByZipcode(zipcode);
-        return new ResponseEntity<>(optional,HttpStatus.OK);
-
+        if(optional.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else{
+            return new ResponseEntity<>(optional,HttpStatus.OK);
+        }
     }
 
     @PutMapping("/{id}")
@@ -49,7 +52,7 @@ public class HouseController {
             house.setLocation(house.getLocation());
             house.setOwnership_status(house.getOwnership_status());
             house.setZipcode(house.getZipcode());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(h, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

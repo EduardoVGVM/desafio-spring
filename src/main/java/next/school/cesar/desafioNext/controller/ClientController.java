@@ -58,7 +58,7 @@ public class ClientController {
             client.setMarital_status(client.getMarital_status());
             client.setDependents(client.getDependents());
             client.setIncome(client.getIncome());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(c,HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
