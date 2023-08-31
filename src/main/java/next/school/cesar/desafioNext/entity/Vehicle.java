@@ -4,12 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity //Declara classe como uma entidade que possa ser tabelada no banco
+@Entity
 @Builder //Automatizar criação de código através do lombok
 @Data //Simplificar métodos ToString, Getters e Setters
 @AllArgsConstructor //Construtor completo
@@ -22,4 +24,7 @@ public class Vehicle {
     private String brand;
     private String model;
     private int year;
+    @ManyToOne()
+    @JoinColumn(name = "client_id", nullable = true, referencedColumnName = "id")
+    private Client client;
 }

@@ -1,9 +1,11 @@
 package next.school.cesar.desafioNext.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,11 +30,14 @@ public class Client {
     private int age;
     private int dependents;
     private double income;
+    @Enumerated
     private MaritalStatus marital_status;
-    @OneToMany(mappedBy = "Client", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private House[] houses;
-    @OneToMany(mappedBy = "Client", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Vehicle[] vehicles;
-    private Date createdAt;
-    private Date updatedAt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", orphanRemoval = true)
+    private List<House> houses;
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "client", orphanRemoval = true)
+    private List<Vehicle> vehicles;
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "client", orphanRemoval = true)
+    private List<Insurance> insurances;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 }
