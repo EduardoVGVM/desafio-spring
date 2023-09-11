@@ -487,8 +487,7 @@ Retorna um objeto do tipo casa cliente cadastrado.
   "id": long,
   "ownership_status": String,
   "location": String,
-  "zipcode": String,
-  "client_id": long,
+  "zipcode": String
 }
 ```
 </details>
@@ -532,7 +531,6 @@ Retorna um objeto do tipo casa alterado.
   "ownership_status": String,
   "location": String,
   "zipcode": String,
-  "client_id": long,
 }
 ```
 </details>
@@ -574,7 +572,6 @@ Retorna um Array do cliente, suas casas e veículos deletados.
   "ownership_status": String,
   "location": String,
   "zipcode": String,
-  "client_id": long,
 }
 ```
 </details>
@@ -637,8 +634,7 @@ Retorna um objeto do tipo veículo cadastrado.
   "id": long,
   "brand": String,
   "model": String,
-  "year": int,
-  "client_id": long
+  "year": int
 }
 ```
 </details>
@@ -679,8 +675,7 @@ Retorna um objeto do tipo veículo alterado que foi associado a um cliente.
   "id": long,
   "brand": String,
   "model": String,
-  "year": int,
-  "client_id": long
+  "year": int
 }
 ```
 </details>
@@ -723,8 +718,7 @@ Retorna um objeto do tipo veículo que foi deletado.
   "id": long,
   "brand": String,
   "model": String,
-  "year": int,
-  "client_id": long
+  "year": int
 }
 ```
 </details>
@@ -732,6 +726,218 @@ Retorna um objeto do tipo veículo que foi deletado.
 
 
 
+-------------------------------------------------------------
+<!-- Requisitos do Seguro -->
+
+
+
+
+
+
+
+
+### Requisitos do Seguro
+
+<details>
+<summary style="font-size:16px"><b>POST: /insurances/life</b></summary>
+
+### Função
+
+Realiza a analise de risco para a linha de seguro vida.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `risk_questions` | Questões de risco. | `body` | `[boolean,boolean,boolean]` | Sim |
+| `client_id` | ID do cliente | `body` | `long` | Sim |
+
+
+**URL de Requisição**
+
+> $ curl -i -H "Content-Type:application/json" -d '{"risk_questions": "[bool,bool,bool]", "client_id": "long"}' https://localhost:8080/insurances/life
+
+#### Exemplo de requisição
+
+Envia um objeto do tipo `seguro` com o formato abaixo.
+
+```JSON
+{
+  "risk_questions": List [boolean, boolean, boolean],
+  "client_id": long
+}
+```
+
+Retorna um objeto do tipo seguro cadastrado, após realizar a analise de risco para a linha de seguro vida.
+
+#### Exemplo de resposta
+
+```JSON
+{
+ "id": long,
+ "type": String,
+ "risk": int,
+ "analysis": Srting,
+ "observation": String,
+ "createdAt": Date,
+ "validateAt": Date
+}
+```
+</details>
+
+
+<details>
+<summary style="font-size:16px"><b>POST: /insurances/disability</b></summary>
+
+### Função
+
+Realiza a analise de risco para a linha de seguro invalidez.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `risk_questions` | Questões de risco. | `body` | `[boolean,boolean,boolean]` | Sim |
+| `client_id` | ID do cliente | `body` | `long` | Sim |
+
+
+**URL de Requisição**
+
+> $ curl -i -H "Content-Type:application/json" -d '{"risk_questions": "[bool,bool,bool]", "client_id": "long"}' https://localhost:8080/insurances/disability
+
+#### Exemplo de requisição
+
+Envia um objeto do tipo `seguro` com o formato abaixo.
+
+```JSON
+{
+  "risk_questions": List [boolean, boolean, boolean],
+  "client_id": long
+}
+```
+
+Retorna um objeto do tipo seguro cadastrado, após realizar a analise de risco para a linha de seguro invalidez.
+
+#### Exemplo de resposta
+
+```JSON
+{
+ "id": long,
+ "type": String,
+ "risk": int,
+ "analysis": Srting,
+ "observation": String,
+ "createdAt": Date,
+ "validateAt": Date
+}
+```
+</details>
+
+
+
+<details>
+<summary style="font-size:16px"><b>POST: /insurances/home</b></summary>
+
+### Função
+
+Realiza a analise de risco para a linha de seguro residencial.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `risk_questions` | Questões de risco. | `body` | `[boolean,boolean,boolean]` | Sim |
+| `client_id` | ID do cliente | `body` | `long` | Sim |
+| `house_id` | ID da casa | `body` | `long` | Sim |
+
+
+**URL de Requisição**
+
+> $ curl -i -H "Content-Type:application/json" -d '{"risk_questions": "[bool,bool,bool]", "client_id": "long"}' https://localhost:8080/insurances/home
+
+#### Exemplo de requisição
+
+Envia um objeto do tipo `seguro` com o formato abaixo.
+
+```JSON
+{
+  "risk_questions": List [boolean, boolean, boolean],
+  "client_id": long,
+  "house_id": long
+}
+```
+
+Retorna um objeto do tipo seguro cadastrado, após realizar a analise de risco para a linha de seguro residencial.
+
+#### Exemplo de resposta
+
+```JSON
+{
+ "id": long,
+ "type": String,
+ "risk": int,
+ "analysis": Srting,
+ "observation": String,
+ "createdAt": Date,
+ "validateAt": Date
+}
+```
+</details>
+
+
+
+<details>
+<summary style="font-size:16px"><b>POST: /insurances/auto</b></summary>
+
+### Função
+
+Realiza a analise de risco para a linha de seguro automóvel.
+
+#### Requisição
+
+**Parâmetros**
+| Parâmetro | Descrição | Tipo de Parâmetro | Tipo de dado | Obrigatório |
+|-----------|-----------|-------------------|--------------|------------|
+| `risk_questions` | Questões de risco. | `body` | `[boolean,boolean,boolean]` | Sim |
+| `client_id` | ID do cliente | `body` | `long` | Sim |
+| `vehicle_id` | ID do veículo | `body` | `long` | Sim |
+
+
+**URL de Requisição**
+
+> $ curl -i -H "Content-Type:application/json" -d '{"risk_questions": "[bool,bool,bool]", "client_id": "long"}' https://localhost:8080/insurances/auto
+
+#### Exemplo de requisição
+
+Envia um objeto do tipo `seguro` com o formato abaixo.
+
+```JSON
+{
+  "risk_questions": List [boolean, boolean, boolean],
+  "client_id": long,
+  "vehicle_id": long
+}
+```
+
+Retorna um objeto do tipo seguro cadastrado, após realizar a analise de risco para a linha de seguro automóvel.
+
+#### Exemplo de resposta
+
+```JSON
+{
+ "id": long,
+ "type": String,
+ "risk": int,
+ "analysis": Srting,
+ "observation": String,
+ "createdAt": Date,
+ "validateAt": Date
+}
+```
+</details>
 
 
 -------------------------------------------------------------
@@ -765,7 +971,7 @@ Todos os atributos simples do Cliente são obrigatórios:
 <summary style="font-size:16px"><b>Atributos da Casa</b></summary>
 Todos os atributos da casa são obrigatórios:
 
-  - **`ownership_status`**: Um valor textual que pode ser "`owned`"ou "`mortgaged`"
+  - **`ownership_status`**: Um valor textual que pode ser "`owned`" ou "`mortgaged`"
   - **`location`**: Um valor textual que terá o endereço completo da casa.
   - **`zipcode`**: Um valor textual que terá o CEP.
 
@@ -773,7 +979,7 @@ Todos os atributos da casa são obrigatórios:
 
 <details>
 <summary style="font-size:16px"><b>Atributos do Veículo</b></summary>
-Todos os atributos do veículo são obrigatórios:
+Todos os atributos não chave do veículo são obrigatórios(salve exceção a PK):
 
   - **`brand`**: Um valor textual correspondente a marca
   - **`model`**: Um valor textual correspondente ao modelo
@@ -781,13 +987,15 @@ Todos os atributos do veículo são obrigatórios:
 </details>
 
 <details>
-<summary style="font-size:16px"><b>Atributos do Endereço</b></summary>
-Todos os atributos do veículo são obrigatórios:
+<summary style="font-size:16px"><b>Atributos do Seguro</b></summary>
+Todos os atributos do Seguro são obrigatórios, exceto o campo `observation`:
 
-  - **`location`**: Um valor textual que terá o endereço completo do cliente.
-  - **`number`**: Um número inteiro positivo correspondente ao numero d endereço
-  - **`zipcode`**: Um valor textual que terá o CEP.
-  - **`observation`**: Um valor textual correspondente a observação do endereço
+- **`type`**: Um valor textual que pode ser "`life`", "`disability`", "`home`" ou "`auto`".
+- **`risk`**: Um número inteiro correspondente a pontuação do risco
+- **`analysis`**: Um valor textual que pode ser "`economic`", "`regular`" ou "`responsible`".
+- **`observation`**: Um valor textual correspondente a observação do seguro
+- **`createdAt`**: Data de criação da analise.
+- **`validatedAt`**: Data de validade da analise.
 
 </details>
 
@@ -801,15 +1009,20 @@ Primeiro, calcula a pontuação base somando as respostas das questões de risco
 - Se o usuário tiver mais de 60 anos, ele não terá direito ao seguro de invalidez e de vida.
 - Se o usuário tiver menos de 30 anos, desconta 2 pontos de risco de todos os ramos de seguro. Se ela tiver entre 30 e 40 anos, descontar 1.
 - Se a renda dela for superior a US$ 200 mil, deduza 1 ponto de risco de todas as linhas de seguro.
-- Se a casa do usuário estiver hipotecada, adicione 1 ponto de risco à pontuação da casa e 1 ponto de risco à pontuação de incapacidade.
+- Se a casa do usuário estiver hipotecada, adicione 1 ponto de risco à pontuação da casa.
+- Para cada casa do usuario que estiver hipotecada, adicione 1 ponto de risco à pontuação de incapacidade.
 - Se o usuário tiver dependentes, adicione 1 ponto de risco aos escores de incapacidade e de vida.
 - Se o usuário for casado, adicione 1 ponto de risco à pontuação de vida e remova 1 ponto de risco de incapacidade.
 - Se o veículo do usuário foi produzido nos últimos 5 anos, adicione 1 ponto de risco à pontuação desse veículo.
-- Este algoritmo resulta numa pontuação final para cada ramo de seguro, que deve ser processada utilizando os seguintes intervalos:
 
-- 0 e abaixo são mapeados para `“econômico”` .
-- 1 e 2 são mapeados para `“regular”` .
-- 3 e acima mapeia para `“responsável”` .
+
+Este algoritmo resulta numa pontuação final para cada ramo de seguro, que deve ser analisada utilizando os seguintes intervalos:
+
+- 0 e abaixo são mapeados para `“economic”`.
+- 1 e 2 são mapeados para `“regular”`.
+- 3 e acima mapeia para `“responsible”` .
+
+Lembrando que uma analise de segura tem validade de 30 dias, ou seja, um mês.
 
 ## Etapas do projeto
 
@@ -817,12 +1030,31 @@ Primeiro, calcula a pontuação base somando as respostas das questões de risco
 
 - Configure o seu projeto para que se conecte a um banco de dados MySQL.
 - Desenvolva as entidades, crie os relacionamentes entre as classes de acordo com o diagrama a baixo e faça o mapeamento das entidade para serem persistidos em um banco de dados MySQL.
+  - > Obs.: crie as entidade se baseando nas [especificações](#especificações) de cada entidade.
+- Crie os repositories para cada uma das entidades que serão persistidas no banco de dados.
+- Extra/Opcional:
+  - Criar outras classes que servirão para representar alguns dos requests e responses da sua API.
+  - Crie alguns registros no banco para testar a sua implementação
 
 ![diagrama](.github/assets/images/diagrama.png)
 
 ### 2. Segunda Etapa
 
-Desenvolva as rotas especificadas nos [requisitos](#requisitos)
+- Desenvolva as rotas especificadas nos [requisitos](#requisitos), começando com os [requisitos do cliente](#requisitos-do-cliente), logo depois faça os [requisitos da casa](#requisitos-da-casa) e por fim os [requisitos do veículo](#requisitos-do-veículo).
+- Crie as classes que servirão para representar os requests e responses da sua API.
+- Crie os servises de cada uma das entidades.
+- Os [requisitos do seguro](#requisitos-do-seguro), não deverão ser implementados na 2º etapa.
+
+### 3. Terceira Etapa
+
+- Desenvolva as rotas espeficicadas nos [requisitos do seguro](#requisitos-do-seguro):
+  - [POST: /insurances/life](#func3a7c3a3o-12)
+  - [POST: /insurances/disability](#func3a7c3a3o-13)
+  - [POST: /insurances/home](#func3a7c3a3o-14)
+  - [POST: /insurances/auto](#func3a7c3a3o-15)
+
+- Bonus:
+  - Ao final do desafio serão selecionados alguns participantes para serem entrevistados, seguindo as recomendações [para o dia da entrevista técnica](#para-o-dia-da-entrevista-técnica)
 
 ## Critérios de Avaliação
 
